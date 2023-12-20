@@ -1,5 +1,11 @@
-import { SplashScreen } from './screens/Splash';
+import { IntroScreen } from "./screens/Intro";
+import { SplashScreen } from "./screens/Splash";
 
 export const App = () => {
-	return <SplashScreen />;
+  return (
+    <main>
+      <SplashScreen />
+      <IntroScreen />
+    </main>
+  );
 };

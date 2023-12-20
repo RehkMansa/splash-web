@@ -57,6 +57,9 @@ export const SplashScreen = () => {
           </FadeDisappearText>
           <CircleIcon icon="teeth" className="bg-ttred text-white" />
         </div>
+        <h4 className="-mt-5 text-center text-3xl font-medium uppercase text-ttred">
+          DentyTech
+        </h4>
       </div>
     </div>
   );

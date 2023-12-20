@@ -20,7 +20,12 @@ export default {
 			'@desktop': '1440px',
 			'2xl': '1536px',
 		},
-		extend: {},
+		extend: {
+			colors: {
+				base: '#FFFDF0',
+				ttred: '#FF5828',
+			},
+		},
 	},
 	plugins: [],
 };

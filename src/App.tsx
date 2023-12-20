@@ -1,3 +1,5 @@
+import { SplashScreen } from './screens/Splash';
+
 export const App = () => {
-	return <div className="bg-black">CleanProject</div>;
+	return <SplashScreen />;
 };

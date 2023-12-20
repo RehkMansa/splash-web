@@ -1,6 +1,6 @@
-import clsx, { ClassArray } from 'clsx';
-import { twJoin } from 'tailwind-merge';
+import clsx, { ClassArray } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-export const cn = (...inputs: ClassArray) => {
-	return twJoin(clsx(inputs));
-};
+export function cn(...inputs: ClassArray) {
+  return twMerge(clsx(inputs));
+}

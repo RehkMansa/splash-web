@@ -1,7 +1,11 @@
-import { IconSlot } from "../assets/icons";
+import { IconSlot, IconKeys } from "../assets/icons";
 import { cn } from "../utils";
 
-const CircleIcon = ({ className }: IClass) => {
+interface CircleIconProps extends IClass {
+  icon?: IconKeys;
+}
+
+const CircleIcon = ({ className, icon }: CircleIconProps) => {
   return (
     <div
       className={cn(
@@ -9,7 +13,7 @@ const CircleIcon = ({ className }: IClass) => {
         className
       )}
     >
-      <IconSlot size={32} icon="arrowRight" />
+      <IconSlot size={32} icon={icon ?? "arrowRight"} />
     </div>
   );
 };
@@ -48,10 +52,10 @@ export const SplashScreen = () => {
           <FadeDisappearText>Dental</FadeDisappearText>
         </div>
         <div className="flex translate-x-28 gap-4">
-          <FadeDisappearText position="left" className="bg-white text-ttred">
+          <FadeDisappearText position="left" className={"bg-white text-ttred"}>
             Assistance
           </FadeDisappearText>
-          <CircleIcon />
+          <CircleIcon icon="teeth" className="bg-ttred text-white" />
         </div>
       </div>
     </div>

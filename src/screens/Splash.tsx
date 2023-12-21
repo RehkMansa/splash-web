@@ -1,15 +1,17 @@
-import { CircleIcon } from "../components/CircleIcon";
+import { CircleIcon, FramerProps } from "../components/CircleIcon";
 import { cn } from "../utils";
 import { motion } from "framer-motion";
 
 interface FadeDisappearText extends IProps {
   position?: "right" | "left";
+  circleIconAnimation?: FramerProps;
 }
 
 const FadeDisappearText = ({
   children,
   className,
   position = "right",
+  circleIconAnimation,
 }: FadeDisappearText) => {
   return (
     <div
@@ -19,7 +21,6 @@ const FadeDisappearText = ({
       )}
     >
       <motion.div
-        // initial={{ width: "auto" }}
         animate={{ width: 0, overflow: "hidden", marginLeft: "-1rem", opacity: 0 }}
         transition={{ ease: "linear", duration: 0.6 }}
         style={{ transformOrigin: "center" }}
@@ -34,6 +35,7 @@ const FadeDisappearText = ({
         transition={{ ease: "linear", duration: 0.4, delay: 0.3 }}
       >
         <CircleIcon
+          {...circleIconAnimation}
           className={cn(
             position === "left" ? "-scale-x-100" : "text-white",
             "border-none p-0"
@@ -49,11 +51,31 @@ export const SplashScreen = () => {
     <div className="grid h-screen place-items-center bg-base">
       <div className="flex w-fit flex-col gap-10">
         <div className="flex gap-4">
-          <CircleIcon />
-          <FadeDisappearText>Dental</FadeDisappearText>
+          <CircleIcon
+            initial={{ rotate: 0 }}
+            animate={{ rotate: 90 }}
+            transition={{ duration: 0.4, delay: 0.8 }}
+          />
+          <FadeDisappearText
+            circleIconAnimation={{
+              initial: { rotate: 0 },
+              animate: { rotate: 90 },
+              transition: { duration: 0.4, delay: 1 },
+            }}
+          >
+            Dental
+          </FadeDisappearText>
         </div>
         <div className="flex translate-x-28 gap-4">
-          <FadeDisappearText position="left" className={"bg-white text-ttred"}>
+          <FadeDisappearText
+            circleIconAnimation={{
+              initial: { rotate: 0 },
+              animate: { rotate: -90 },
+              transition: { duration: 0.4, delay: 0.8 },
+            }}
+            position="left"
+            className={"bg-white text-ttred"}
+          >
             Assistance
           </FadeDisappearText>
           <CircleIcon icon="teeth" className="bg-ttred text-white" />

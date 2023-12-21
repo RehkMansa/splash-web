@@ -1,6 +1,23 @@
 import { Button } from "../components/Button";
 import { MatteIconRow } from "../components/CircleIcon";
 import { FooterCopy } from "../components/Footer";
+import { ScrollCard } from "../components/ScrollCard";
+import { cn } from "../utils";
+
+const imagesToDisplay = [
+  [
+    { text: "Dental Health Records", src: 99 },
+    { text: "Some text", src: 199 },
+    { text: "Another text", src: 299 },
+    { text: "Short Text", src: 399 },
+  ],
+  [
+    { text: "An Okay Text", src: 229 },
+    { text: "I am playing", src: 419 },
+    { text: "Random dentist text", src: 499 },
+    { text: "Clean teeth", src: 666 },
+  ],
+];
 
 export const Screen4 = () => {
   return (
@@ -16,7 +33,21 @@ export const Screen4 = () => {
         </div>
         <FooterCopy />
       </div>
-      <div className="h-screen"></div>
+      <div className="h-screen py-10">
+        <div className="flex w-full items-center gap-4">
+          {imagesToDisplay.map((ele, idx) => (
+            <div key={idx} className={cn("w-full space-y-4", idx === 1 && "mt-20")}>
+              {ele.map((item) => (
+                <ScrollCard
+                  {...item}
+                  src={`https://picsum.photos/id/${item.src}/500/500`}
+                  key={item.src}
+                />
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

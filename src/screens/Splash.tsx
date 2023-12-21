@@ -1,5 +1,6 @@
 import { CircleIcon } from "../components/CircleIcon";
 import { cn } from "../utils";
+import { motion } from "framer-motion";
 
 interface FadeDisappearText extends IProps {
   position?: "right" | "left";
@@ -9,22 +10,39 @@ const FadeDisappearText = ({
   children,
   className,
   position = "right",
-}: FadeDisappearText) => (
-  <div
-    className={cn(
-      "flex w-fit items-center gap-4 rounded-full bg-ttred p-4 px-8 text-2xl font-medium uppercase text-white",
-      className
-    )}
-  >
-    {children}
-    <CircleIcon
+}: FadeDisappearText) => {
+  return (
+    <div
       className={cn(
-        position === "left" ? "-scale-x-100" : "text-white",
-        "border-none p-0"
+        "flex w-fit items-center gap-4 rounded-full bg-ttred p-4 text-2xl font-medium uppercase text-white",
+        className
       )}
-    />
-  </div>
-);
+    >
+      <motion.div
+        // initial={{ width: "auto" }}
+        animate={{ width: 0, overflow: "hidden", marginLeft: "-1rem", opacity: 0 }}
+        transition={{ ease: "linear", duration: 0.6 }}
+        style={{ transformOrigin: "center" }}
+      >
+        {children}
+      </motion.div>
+
+      <motion.div
+        style={{ transformOrigin: "center" }}
+        animate={{ width: "32px", overflow: "hidden", opacity: 1 }}
+        initial={{ width: "0", opacity: 0 }}
+        transition={{ ease: "linear", duration: 0.4, delay: 0.3 }}
+      >
+        <CircleIcon
+          className={cn(
+            position === "left" ? "-scale-x-100" : "text-white",
+            "border-none p-0"
+          )}
+        />
+      </motion.div>
+    </div>
+  );
+};
 
 export const SplashScreen = () => {
   return (

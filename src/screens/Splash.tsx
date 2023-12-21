@@ -1,22 +1,5 @@
-import { IconSlot, IconKeys } from "../assets/icons";
+import { CircleIcon } from "../components/CircleIcon";
 import { cn } from "../utils";
-
-interface CircleIconProps extends IClass {
-  icon?: IconKeys;
-}
-
-const CircleIcon = ({ className, icon }: CircleIconProps) => {
-  return (
-    <div
-      className={cn(
-        "w-fit rounded-full border-[2px] border-ttred p-4 text-ttred",
-        className
-      )}
-    >
-      <IconSlot size={32} icon={icon ?? "arrowRight"} />
-    </div>
-  );
-};
 
 interface FadeDisappearText extends IProps {
   position?: "right" | "left";

@@ -3,6 +3,7 @@ import Image1 from "../assets/intro/image1.avif";
 import Image2 from "../assets/intro/image2.avif";
 import Image3 from "../assets/intro/image3.avif";
 import { FlipCard } from "../components/FlipCard";
+import { FooterCopy } from "../components/Footer";
 
 interface FlipUI {
   icon: IconKeys;
@@ -29,23 +30,13 @@ export const IntroScreen = () => {
             <FlipCard {...ele} idx={idx} total={flipUi.length} key={ele.text} />
           ))}
 
-          <div className="absolute bottom-0 flex w-full items-center justify-between">
-            <div className="">
-              <div className="mb-1 h-2 w-2 rounded-full bg-ttred"></div>
-              <p>Your smile our passion</p>
-            </div>
-            <div className="div mx-auto flex h-20 w-20 translate-y-5 items-center justify-center rounded-full border border-black">
-              <IconSlot icon="arrowDown" className="animate-bounce" size={28} />
-            </div>
-            <div className="flex flex-col items-center justify-center gap-4">
-              <div className="flex items-center gap-5">
-                <IconSlot size={24} icon="instagram" />
-                <IconSlot size={24} icon="youtube" />
-                <IconSlot size={24} icon="facebook" />
+          <FooterCopy>
+            <div className="relative mx-auto flex h-20 w-20 translate-y-5 items-center justify-center rounded-full border border-black after:absolute after:bottom-0 after:h-1/2 after:w-full after:translate-y-4 after:bg-white">
+              <div className="-mt-3">
+                <IconSlot icon="arrowDown" className="animate-bounce" size={28} />
               </div>
-              <p className="whitespace-nowrap">Best Startup of 2023</p>
             </div>
-          </div>
+          </FooterCopy>
         </div>
       </div>
     </div>

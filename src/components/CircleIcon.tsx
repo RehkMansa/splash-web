@@ -18,3 +18,17 @@ export const CircleIcon = ({ className, icon, iconProps }: CircleIconProps) => {
     </div>
   );
 };
+
+export const MatteIconRow = () => {
+  const icons = ["dna", "leaf", "crown"] as const;
+
+  return (
+    <div className="flex items-center gap-2">
+      {icons.map((icon) => (
+        <div key={icon} className="bg-matte rounded-full stroke-ttred p-2  text-ttred">
+          <IconSlot size={20} key={icon} icon={icon} />
+        </div>
+      ))}
+    </div>
+  );
+};

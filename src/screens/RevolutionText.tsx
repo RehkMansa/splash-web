@@ -1,11 +1,9 @@
 import { IconSlot } from "../assets/icons";
-import { CircleIcon } from "../components/CircleIcon";
+import { CircleIcon, MatteIconRow } from "../components/CircleIcon";
 import { FooterCopy } from "../components/Footer";
 import { cn } from "../utils";
 import Img1 from "../assets/screen3/smile-pfp.jpeg";
 import Img2 from "../assets/screen3/smile-play.jpeg";
-
-const icons = ["dna", "leaf", "crown"] as const;
 
 const RevealText = ({ children, className }: IProps) => (
   <div className={cn("text-8xl font-medium uppercase", className)}>{children}</div>
@@ -18,16 +16,7 @@ export const RevolutionTextScreen = () => {
         <div className="flex items-center gap-6">
           <RevealText>Revolutionizing</RevealText>
           <div>
-            <div className="flex items-center gap-2">
-              {icons.map((icon) => (
-                <div
-                  key={icon}
-                  className="bg-matte rounded-full stroke-ttred p-2  text-ttred"
-                >
-                  <IconSlot size={20} key={icon} icon={icon} />
-                </div>
-              ))}
-            </div>
+            <MatteIconRow />
             <p className="mt-2 text-left text-sm font-semibold">
               Modern solutions, <br /> Timeless smiles
             </p>

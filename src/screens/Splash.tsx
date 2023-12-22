@@ -77,7 +77,12 @@ export const SplashScreen = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setContainerMovement("moveX");
-    }, 1650);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 2000);
 
     return () => {
       clearTimeout(timeout);
@@ -87,6 +92,11 @@ export const SplashScreen = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setArrowMovement("moveLeft");
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
     }, 1450);
 
     return () => {
@@ -95,69 +105,70 @@ export const SplashScreen = () => {
   }, []);
 
   return (
-    <div className="grid h-screen place-items-center bg-base">
-      <motion.div animate={containerMovement} className="flex w-fit flex-col gap-10">
-        <motion.div
-          className="flex gap-4"
-          animate={containerMovement}
-          variants={{
-            moveY: { y: 50, transition: { duration: 0.6, delay: 1 } },
-            moveX: {
-              y: 50,
-              x: 10,
-              transition: { duration: 0.3 },
-            },
-          }}
-          style={{ opacity: hideFinalOpacity }}
-          onAnimationComplete={(definition) => {
-            if (definition === "moveX") {
-              setHideFinalOpacity(0);
-            }
+    <motion.div
+      animate={containerMovement}
+      className="flex max-h-screen w-fit flex-col gap-10"
+    >
+      <motion.div
+        className="flex gap-4"
+        animate={containerMovement}
+        variants={{
+          moveY: { y: 50, transition: { duration: 0.6, delay: 1 } },
+          moveX: {
+            y: 50,
+            x: 10,
+            transition: { duration: 0.3 },
+          },
+        }}
+        style={{ opacity: hideFinalOpacity }}
+        onAnimationComplete={(definition) => {
+          if (definition === "moveX") {
+            setHideFinalOpacity(0);
+          }
+        }}
+      >
+        <CircleIcon variants={variant()} animate={arrowMovement} />
+        <FadeDisappearText
+          circleIconAnimation={{
+            variants: variant(0.2),
+            animate: arrowMovement,
           }}
         >
-          <CircleIcon variants={variant()} animate={arrowMovement} />
+          Dental
+        </FadeDisappearText>
+      </motion.div>
+      <motion.div
+        animate={containerMovement}
+        variants={{
+          moveY: { y: -58, x: 160, transition: { duration: 0.6, delay: 1 } },
+          moveX: { y: -58, x: 50, transition: { duration: 0.8 } },
+        }}
+        initial={{ x: "160px" }}
+        className="flex  gap-4"
+      >
+        {hideFinalOpacity > 0 && (
           <FadeDisappearText
             circleIconAnimation={{
-              variants: variant(0.2),
-              animate: arrowMovement,
+              initial: { rotate: 90 },
+              animate: { rotate: 180 },
+              transition: { duration: 0.4, delay: 0.8 },
             }}
+            position="left"
+            className="bg-white text-ttred"
           >
-            Dental
+            Assistance
           </FadeDisappearText>
-        </motion.div>
-        <motion.div
-          animate={containerMovement}
-          variants={{
-            moveY: { y: -58, x: 160, transition: { duration: 0.6, delay: 1 } },
-            moveX: { y: -58, x: 50, transition: { duration: 0.8 } },
-          }}
-          initial={{ x: "160px" }}
-          className="flex  gap-4"
-        >
-          {hideFinalOpacity > 0 && (
-            <FadeDisappearText
-              circleIconAnimation={{
-                initial: { rotate: 90 },
-                animate: { rotate: 180 },
-                transition: { duration: 0.4, delay: 0.8 },
-              }}
-              position="left"
-              className="bg-white text-ttred"
-            >
-              Assistance
-            </FadeDisappearText>
-          )}
-          <CircleIcon icon="teeth" className="bg-ttred text-white" />
-        </motion.div>
-        <motion.h4
-          initial={{ height: 0 }}
-          animate={{ height: 36 }}
-          transition={{ duration: 0.4, delay: 2.6 }}
-          className="-mt-20 overflow-hidden text-center text-3xl font-medium uppercase text-ttred"
-        >
-          DentyTech
-        </motion.h4>
+        )}
+        <CircleIcon icon="teeth" className="bg-ttred text-white" />
       </motion.div>
-    </div>
+      <motion.h4
+        initial={{ height: 0 }}
+        animate={{ height: 36 }}
+        transition={{ duration: 0.4, delay: 2.8 }}
+        className="-mt-20 overflow-hidden text-center text-3xl font-medium uppercase text-ttred"
+      >
+        DentyTech
+      </motion.h4>
+    </motion.div>
   );
 };

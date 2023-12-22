@@ -1,12 +1,41 @@
+import { AnimatePresence } from "framer-motion";
 import { IntroScreen } from "./screens/Intro";
 import { RevolutionTextScreen } from "./screens/RevolutionText";
 import { Screen4 } from "./screens/Screen4";
 import { SplashScreen } from "./screens/Splash";
+import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 
 export const App = () => {
+  const [showSplash, setShowSplash] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowSplash(false);
+
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }, 3500);
+
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
+
   return (
     <main>
-      <SplashScreen />
+      <AnimatePresence>
+        {showSplash && (
+          <motion.div
+            className="fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-base"
+            exit={{ opacity: 0 }}
+          >
+            <SplashScreen />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <IntroScreen />
       <RevolutionTextScreen />
       <Screen4 />

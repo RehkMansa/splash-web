@@ -44,9 +44,9 @@ export const IntroScreen = () => {
     setFlipCardsNode(flipCards);
   }, []);
 
+  // use a state to check if its going back or front and animate based on that state
   const handleObjectScroll = (scroll: number) => {
     const tempScroll = Math.floor(scroll * 100);
-    console.log(tempScroll);
 
     if (!flipCardsNode) return;
 

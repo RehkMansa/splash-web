@@ -28,12 +28,15 @@ export const App = () => {
     <main>
       <AnimatePresence>
         {showSplash && (
-          <motion.div
-            className="fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-base"
-            exit={{ opacity: 0 }}
-          >
-            <SplashScreen />
-          </motion.div>
+          <>
+            <motion.div
+              className="fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-base"
+              exit={{ opacity: 0 }}
+            >
+              <SplashScreen />
+            </motion.div>
+            <div className="h-screen" />
+          </>
         )}
       </AnimatePresence>
       <IntroScreen />

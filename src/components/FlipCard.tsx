@@ -14,12 +14,13 @@ interface FlipCardProps extends FramerProps {
 export const FlipCard = ({ src, icon, text, idx, total, ...rest }: FlipCardProps) => {
   return (
     <motion.div
-      className="absolute left-1/2 top-1/2 flex h-[450px] w-[300px] rounded-2xl bg-white bg-cover"
+      className="flip-card absolute left-1/2 top-1/2 flex h-[450px] w-[300px] rounded-2xl bg-white bg-cover"
       style={{
         backgroundImage: `url(${src})`,
         zIndex: total - idx + 1,
       }}
       {...rest}
+      data-flip={idx}
     >
       <div className="mx-auto mb-10 mt-auto flex w-fit items-center gap-1">
         <div className="rounded-full bg-white p-2">

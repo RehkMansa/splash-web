@@ -1,5 +1,6 @@
+import "../styles/Intro.scss";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { IconKeys, IconSlot } from "../assets/icons";
 import Image1 from "../assets/intro/image1.avif";
 import Image2 from "../assets/intro/image2.avif";
@@ -7,6 +8,7 @@ import Image3 from "../assets/intro/image3.avif";
 import { FlipCard } from "../components/FlipCard";
 import { FooterCopy } from "../components/Footer";
 import { motion, useInView } from "framer-motion";
+import { Parallax } from "react-scroll-parallax";
 
 interface FlipUI {
   icon: IconKeys;
@@ -27,15 +29,59 @@ const h1Variants = {
   onNotInView: { maxHeight: 0, opacity: 0, y: 200 },
   onInView: { maxHeight: 1000, opacity: 1, y: 0 },
 };
+const ANIMATE_CLASS = "slide-element-up";
 
 export const IntroScreen = () => {
   const headingRef = useRef<any>(null);
   const headerIsInView = useInView(headingRef, { amount: 0.5 });
+  const [flipCardsNode, setFlipCardsNode] = useState<NodeListOf<HTMLDivElement>>(
+    document.querySelectorAll(".flip-card")
+  );
+
+  useEffect(() => {
+    const flipCards = document.querySelectorAll<HTMLDivElement>(".flip-card");
+
+    setFlipCardsNode(flipCards);
+  }, []);
+
+  const handleObjectScroll = (scroll: number) => {
+    const tempScroll = Math.floor(scroll * 100);
+    console.log(tempScroll);
+
+    if (!flipCardsNode) return;
+
+    const [flip1, flip2, flip3] = flipCardsNode;
+
+    if (tempScroll === 30) {
+      flip1?.classList?.add(ANIMATE_CLASS);
+    }
+
+    if (tempScroll === 50) {
+      flip2?.classList?.add(ANIMATE_CLASS);
+    }
+
+    if (tempScroll === 75) {
+      flip3?.classList?.add(ANIMATE_CLASS);
+    }
+
+    if (tempScroll >= 99) {
+      flipCardsNode.forEach((node) => {
+        if (node.classList.contains(ANIMATE_CLASS)) {
+          node.classList.remove(ANIMATE_CLASS);
+        }
+      });
+    }
+  };
 
   return (
-    <div className="h-screen">
+    <Parallax
+      shouldAlwaysCompleteAnimation
+      onProgressChange={handleObjectScroll}
+      rootMargin={{ top: -100, bottom: 0, left: 0, right: 0 }}
+      className="h-[400vh]"
+    >
       <div className="container relative h-full">
-        <div className="flex h-full flex-col items-center justify-center">
+        <div className="sticky top-0 flex h-screen flex-col items-center justify-center">
           <motion.h1
             variants={h1Variants}
             ref={headingRef}
@@ -111,7 +157,7 @@ export const IntroScreen = () => {
             <motion.div
               initial={{ y: -30, opacity: 0 }}
               whileInView={{ y: 20, opacity: 1 }}
-              transition={{ ease: "easeOut", duration: 0.6, delay: 0.3 }}
+              transition={{ ease: "easeOut", duration: 0.6, delay: 0.5 }}
               className="relative mx-auto flex h-20 w-20 translate-y-5 items-center justify-center rounded-full border border-black after:absolute after:bottom-0 after:h-1/2 after:w-full after:translate-y-1 after:bg-white"
             >
               <div className="-mt-3">
@@ -121,6 +167,6 @@ export const IntroScreen = () => {
           </FooterCopy>
         </div>
       </div>
-    </div>
+    </Parallax>
   );
 };

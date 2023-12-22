@@ -5,6 +5,7 @@ import { Screen4 } from "./screens/Screen4";
 import { SplashScreen } from "./screens/Splash";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { ParallaxProvider } from "react-scroll-parallax";
 
 export const App = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -25,7 +26,7 @@ export const App = () => {
   }, []);
 
   return (
-    <main>
+    <ParallaxProvider>
       <AnimatePresence>
         {showSplash && (
           <>
@@ -42,6 +43,6 @@ export const App = () => {
       <IntroScreen />
       <RevolutionTextScreen />
       <Screen4 />
-    </main>
+    </ParallaxProvider>
   );
 };

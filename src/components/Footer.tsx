@@ -25,9 +25,9 @@ export const FooterCopy = ({ children }: Partial<IChildren>) => {
         <div className="flex items-center gap-5">
           {icons.map((icon) => (
             <motion.div
-              initial={{ scale: 0, opacity: 0, rotate: -65 }}
-              whileInView={{ scale: 1, opacity: 1, rotate: 0 }}
-              transition={{ ease: "easeOut", duration: 0.6, delay: 0.5 }}
+              initial={{ scale: -1, opacity: 0, rotate: 260 }}
+              whileInView={{ scale: 1, opacity: 1, rotate: -0 }}
+              transition={{ ease: "easeOut", duration: 0.6, delay: 0.6 }}
               key={icon}
               className="overflow-hidden"
             >

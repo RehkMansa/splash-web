@@ -110,7 +110,6 @@ export const SplashScreen = () => {
           }}
           style={{ opacity: hideFinalOpacity }}
           onAnimationComplete={(definition) => {
-            console.log("Completed animating", definition);
             if (definition === "moveX") {
               setHideFinalOpacity(0);
             }

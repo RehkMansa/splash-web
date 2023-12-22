@@ -58,7 +58,7 @@ export const IntroScreen = () => {
           <motion.div
             className="absolute left-1/2 top-1/2 flex h-[450px] w-full items-center justify-center"
             animate={headerIsInView ? "onInView" : "initialInView"}
-            initial={{ translate: "-50% 0", opacity: 0.5 }}
+            initial={{ translate: "-50% 0", opacity: 0.7 }}
             variants={{
               onInView: {
                 transition: {
@@ -96,7 +96,7 @@ export const IntroScreen = () => {
                   },
                   initialInView: {
                     rotate: "-30deg",
-                    opacity: 0,
+                    opacity: 0.8,
                   },
                   onInScroll: {},
                 }}
@@ -108,11 +108,16 @@ export const IntroScreen = () => {
           </motion.div>
 
           <FooterCopy>
-            <div className="relative mx-auto flex h-20 w-20 translate-y-5 items-center justify-center rounded-full border border-black after:absolute after:bottom-0 after:h-1/2 after:w-full after:translate-y-4 after:bg-white">
+            <motion.div
+              initial={{ y: -30, opacity: 0 }}
+              whileInView={{ y: 20, opacity: 1 }}
+              transition={{ ease: "easeOut", duration: 0.6, delay: 0.3 }}
+              className="relative mx-auto flex h-20 w-20 translate-y-5 items-center justify-center rounded-full border border-black after:absolute after:bottom-0 after:h-1/2 after:w-full after:translate-y-1 after:bg-white"
+            >
               <div className="-mt-3">
                 <IconSlot icon="arrowDown" className="animate-bounce" size={28} />
               </div>
-            </div>
+            </motion.div>
           </FooterCopy>
         </div>
       </div>

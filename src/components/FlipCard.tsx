@@ -14,7 +14,7 @@ interface FlipCardProps extends FramerProps {
 export const FlipCard = ({ src, icon, text, idx, total, ...rest }: FlipCardProps) => {
   return (
     <motion.div
-      className="absolute left-1/2 top-1/2 flex h-[450px] w-[300px] rounded-2xl bg-cover"
+      className="absolute left-1/2 top-1/2 flex h-[450px] w-[300px] rounded-2xl bg-white bg-cover"
       style={{
         backgroundImage: `url(${src})`,
         zIndex: total - idx + 1,

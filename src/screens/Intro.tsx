@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import { IconKeys, IconSlot } from "../assets/icons";
 import Image1 from "../assets/intro/image1.avif";
 import Image2 from "../assets/intro/image2.avif";
@@ -17,8 +17,8 @@ interface FlipUI {
 
 const flipUi: FlipUI[] = [
   { text: "Convenience", icon: "hand", src: Image1, offset: 30 },
-  { text: "Modern Solution", icon: "connection", src: Image2, offset: 35 },
-  { text: "Personalized Care", icon: "cursor-arrow-triple", src: Image3, offset: 38 },
+  { text: "Modern Solution", icon: "connection", src: Image2, offset: 40 },
+  { text: "Personalized Care", icon: "cursor-arrow-triple", src: Image3, offset: 45 },
 ];
 
 const animateText = "OUR ADVANTAGES";
@@ -29,26 +29,8 @@ const h1Variants = {
 };
 
 export const IntroScreen = () => {
-  const [staggerCardKids, setStaggerCardKids] = useState(0.2);
   const headingRef = useRef<any>(null);
   const headerIsInView = useInView(headingRef, { amount: 0.5 });
-
-  useEffect(() => {
-    let timer: number;
-
-    if (!headerIsInView) return;
-
-    // eslint-disable-next-line prefer-const
-    timer = setTimeout(() => {
-      setStaggerCardKids(1);
-    }, 0);
-
-    return () => {
-      if (timer) {
-        clearTimeout(timer);
-      }
-    };
-  }, [headerIsInView]);
 
   return (
     <div className="h-screen">
@@ -74,27 +56,37 @@ export const IntroScreen = () => {
             ))}
           </motion.h1>
           <motion.div
+            className="absolute left-1/2 top-1/2 flex h-[450px] w-full items-center justify-center"
             animate={headerIsInView ? "onInView" : "initialInView"}
-            // animate="initialInView"
+            initial={{ translate: "-50% 0", opacity: 0.5 }}
             variants={{
               onInView: {
-                transition: { staggerChildren: staggerCardKids },
+                transition: {
+                  staggerChildren: 0.2,
+                  delayChildren: 0.2,
+                  duration: 0.5,
+                  ease: "easeOut",
+                },
+                translate: "-50% -50%",
+                opacity: 1,
               },
-              initialInView: {},
+              initialInView: {
+                translate: "-50% 0%",
+              },
               onInScroll: {},
               delayedRotate: {},
             }}
-            transition={{ staggerChildren: staggerCardKids }}
+            transition={{ ease: "easeOut", duration: 0.4 }}
           >
             {flipUi.map((ele, idx) => (
               <FlipCard
                 {...ele}
                 initial={{
-                  translate: "-50% -0%",
+                  translate: "-50% -50%",
+                  rotate: "-30deg",
                 }}
                 variants={{
                   onInView: {
-                    translate: "-50% -50%",
                     rotate: `-${ele.offset}deg`,
                     opacity: 1,
                     transition: {
@@ -103,7 +95,6 @@ export const IntroScreen = () => {
                     },
                   },
                   initialInView: {
-                    translate: "-50% -0%",
                     rotate: "-30deg",
                     opacity: 0,
                   },

@@ -20,7 +20,7 @@ const RevealText = ({ children, className, animateText }: RevealTextProps) => {
   return (
     <div ref={revealTextRef} className="relative overflow-hidden">
       <motion.div
-        className={cn("text-8xl font-medium uppercase", className)}
+        className={cn("text-8xl font-light uppercase", className)}
         animate={isInView ? "final" : "initial"}
         initial="initial"
         variants={{
@@ -96,7 +96,7 @@ export const RevolutionTextScreen = () => {
                 initial={{ maxWidth: 0, opacity: 0 }}
                 whileInView={{ maxWidth: 160, opacity: 1 }}
                 transition={{ duration: 0.6, delay: 0.75, ease: "easeOut" }}
-                className="grid place-items-center overflow-hidden rounded-full bg-matte/90 px-4 py-2.5 text-lg font-medium text-ttred/90"
+                className="grid place-items-center overflow-hidden rounded-full bg-matte/90 px-4 py-2.5 text-lg  text-ttred/90"
               >
                 ASSISTANCE
               </motion.div>
@@ -197,9 +197,7 @@ export const RevolutionTextScreen = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="relative z-[1] grid h-36 w-36 place-items-center rounded-full bg-ttred text-white">
-            <span className="text-center text-2xl font-medium uppercase">
-              Get Started
-            </span>
+            <span className="text-center text-2xl  uppercase">Get Started</span>
           </div>
         </motion.div>
       </FooterCopy>

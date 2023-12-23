@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 interface IChildren {
   children: React.ReactNode;
 }
@@ -14,3 +15,5 @@ interface IProps {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 type ComponentProps<T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>> =
   React.ComponentProps<T>;
+
+type ANY = any;

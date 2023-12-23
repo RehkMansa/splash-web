@@ -19,7 +19,7 @@ const FadeDisappearText = ({
   return (
     <div
       className={cn(
-        "flex w-fit items-center gap-4 rounded-full bg-ttred p-4 text-2xl font-medium uppercase text-white",
+        "flex w-fit items-center gap-4 rounded-full bg-ttred p-4 text-2xl  uppercase text-white",
         className
       )}
     >
@@ -165,7 +165,7 @@ export const SplashScreen = () => {
         initial={{ height: 0 }}
         animate={{ height: 36 }}
         transition={{ duration: 0.4, delay: 2.8 }}
-        className="-mt-20 overflow-hidden text-center text-3xl font-medium uppercase text-ttred"
+        className="-mt-20 overflow-hidden text-center text-3xl  uppercase text-ttred"
       >
         DentyTech
       </motion.h4>

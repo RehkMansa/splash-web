@@ -72,7 +72,7 @@ export const IntroScreen = () => {
       flip2?.classList?.add(ANIMATE_CLASS);
     }
 
-    if (tempScroll === 75) {
+    if (tempScroll === 70) {
       flip3?.classList?.add(ANIMATE_CLASS);
     }
 
@@ -103,7 +103,7 @@ export const IntroScreen = () => {
             initial="onNotInView"
             animate={headerIsInView ? "onInView" : "onNotInView"}
             transition={{ staggerChildren: 0.05 }}
-            className="flex gap-2 overflow-hidden whitespace-nowrap text-center text-[150px] font-medium"
+            className="flex gap-2 overflow-hidden whitespace-nowrap text-center text-[150px] font-light"
           >
             {animateText.split("").map((text, idx) => (
               <motion.span

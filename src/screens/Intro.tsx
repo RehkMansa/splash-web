@@ -47,7 +47,7 @@ export const IntroScreen = () => {
   // use a state to check if its going back or front and animate based on that state
   const handleObjectScroll = (scroll: number) => {
     const tempScroll = Math.floor(scroll * 100);
-    console.log({ tempScroll });
+    console.log(tempScroll);
 
     if (!headerIsInView) return;
 
@@ -76,7 +76,9 @@ export const IntroScreen = () => {
       flip3?.classList?.add(ANIMATE_CLASS);
     }
 
-    if (tempScroll >= 90) {
+    if (tempScroll > 90 && tempScroll < 100) {
+      console.log("...down cleanup...");
+
       flipCardsNode.forEach((node) => {
         console.log("...down cleanup...");
         if (node.classList.contains(ANIMATE_CLASS)) {
@@ -88,9 +90,9 @@ export const IntroScreen = () => {
 
   return (
     <Parallax
-      // shouldAlwaysCompleteAnimation
+      shouldAlwaysCompleteAnimation
       onProgressChange={handleObjectScroll}
-      rootMargin={{ top: -100, bottom: 0, left: 0, right: 0 }}
+      rootMargin={{ top: -100, bottom: 100, left: 0, right: 0 }}
       className="h-[400vh]"
     >
       <div className="container relative h-full">

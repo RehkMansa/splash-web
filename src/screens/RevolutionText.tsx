@@ -1,5 +1,5 @@
 import { IconSlot } from "../assets/icons";
-import { CircleIcon, MatteIconRow } from "../components/CircleIcon";
+import { CircleIcon, FramerProps, MatteIconRow } from "../components/CircleIcon";
 import { FooterCopy } from "../components/Footer";
 import { cn } from "../utils";
 import Img1 from "../assets/screen3/smile-pfp.jpeg";
@@ -10,9 +10,10 @@ import { Parallax } from "react-scroll-parallax";
 
 interface RevealTextProps extends IClass {
   children: string;
+  animateText?: FramerProps;
 }
 
-const RevealText = ({ children, className }: RevealTextProps) => {
+const RevealText = ({ children, className, animateText }: RevealTextProps) => {
   const revealTextRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(revealTextRef, { amount: 0.5 });
 
@@ -27,6 +28,7 @@ const RevealText = ({ children, className }: RevealTextProps) => {
           final: { y: 0, opacity: 1 },
         }}
         transition={{ duration: 0.5, delay: 0.25 }}
+        {...animateText}
       >
         {children}
       </motion.div>
@@ -56,7 +58,22 @@ export const RevolutionTextScreen = () => {
           <div>
             <MatteIconRow />
             <p className="mt-2 text-left text-sm font-semibold">
-              Modern solutions, <br /> Timeless smiles
+              <RevealText
+                animateText={{
+                  transition: { duration: 0.5, delay: 0.4 },
+                }}
+                className="text-left text-sm font-semibold capitalize text-black/80"
+              >
+                Modern solutions,
+              </RevealText>
+              <RevealText
+                animateText={{
+                  transition: { duration: 0.5, delay: 0.4 },
+                }}
+                className="text-left text-sm font-semibold capitalize text-black/80"
+              >
+                Timeless smiles
+              </RevealText>
             </p>
           </div>
         </div>
@@ -87,12 +104,29 @@ export const RevolutionTextScreen = () => {
             </motion.div>
             <RevealText>Dental</RevealText>
           </div>
-          <div className="flex items-center gap-4">
-            <img src={Img1} alt="" className="h-28 w-28 rounded-full object-cover" />
-            <div className="grid h-28 w-28 place-items-center rounded-full bg-matte text-ttred">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.6, ease: "easeOut" }}
+            className="mr-[-40px] flex items-center gap-4"
+          >
+            <motion.img
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.7, ease: "easeOut" }}
+              src={Img1}
+              alt=""
+              className="relative z-[1] h-28 w-28 overflow-hidden rounded-full object-cover"
+            />
+            <motion.div
+              initial={{ scale: 0, opacity: 0, x: -80 }}
+              whileInView={{ scale: 1, opacity: 1, x: -50 }}
+              transition={{ duration: 0.6, delay: 1, ease: "easeOut" }}
+              className="grid h-28 w-28 place-items-center overflow-hidden rounded-full bg-matte text-ttred"
+            >
               <IconSlot icon="plantFilled" size={70} />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
           <RevealText>Care</RevealText>
         </div>
         <div className="flex items-center gap-4">

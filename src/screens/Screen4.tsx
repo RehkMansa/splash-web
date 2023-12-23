@@ -62,16 +62,19 @@ export const Screen4 = () => {
             transition={{ staggerChildren: 0.05 }}
             className="max-w-[90%] gap-2 overflow-hidden text-7xl font-light"
           >
-            {animateText.split("").map((text, idx) => (
-              <motion.span
-                transition={{ ease: "easeOut" }}
-                className="inline-block overflow-hidden capitalize"
-                variants={h1Variants}
-                key={text + idx}
-              >
-                {text === " " ? <>&nbsp;</> : text}
-              </motion.span>
-            ))}
+            {animateText.split("").map((text, idx) => {
+              console.log(text);
+              return (
+                <motion.span
+                  transition={{ ease: "easeOut" }}
+                  className="inline-block overflow-hidden capitalize"
+                  variants={h1Variants}
+                  key={text + idx}
+                >
+                  {text === " " ? <>&nbsp;</> : text}
+                </motion.span>
+              );
+            })}
           </motion.h1>
           {/* <h1 className="text-8xl">Explore our service, make your smile shine</h1> */}
           <motion.div

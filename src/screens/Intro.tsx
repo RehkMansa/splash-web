@@ -32,7 +32,7 @@ const h1Variants = {
 const ANIMATE_CLASS = "slide-element-up";
 
 export const IntroScreen = () => {
-  const headingRef = useRef<any>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
   const headerIsInView = useInView(headingRef, { amount: 0.5 });
   const [flipCardsNode, setFlipCardsNode] = useState<NodeListOf<HTMLDivElement>>(
     document.querySelectorAll(".flip-card")
@@ -47,7 +47,6 @@ export const IntroScreen = () => {
   // use a state to check if its going back or front and animate based on that state
   const handleObjectScroll = (scroll: number) => {
     const tempScroll = Math.floor(scroll * 100);
-    console.log(tempScroll);
 
     if (!headerIsInView) return;
 
@@ -57,7 +56,6 @@ export const IntroScreen = () => {
 
     if (tempScroll > 0 && tempScroll <= 10) {
       flipCardsNode.forEach((node) => {
-        console.log("...up cleanup...");
         if (node.classList.contains(ANIMATE_CLASS)) {
           node.classList.remove(ANIMATE_CLASS);
         }
@@ -76,11 +74,16 @@ export const IntroScreen = () => {
       flip3?.classList?.add(ANIMATE_CLASS);
     }
 
-    if (tempScroll > 90 && tempScroll < 100) {
-      console.log("...down cleanup...");
+    if (tempScroll > 80) {
+      headingRef.current?.classList.add("hide-header");
+    } else {
+      if (headingRef.current?.classList.contains("hide-header")) {
+        headingRef.current?.classList.remove("hide-header");
+      }
+    }
 
+    if (tempScroll > 90 && tempScroll < 100) {
       flipCardsNode.forEach((node) => {
-        console.log("...down cleanup...");
         if (node.classList.contains(ANIMATE_CLASS)) {
           node.classList.remove(ANIMATE_CLASS);
         }

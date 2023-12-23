@@ -144,7 +144,7 @@ export const RevolutionTextScreen = () => {
             whileInView="onInView"
             animate={containerIsInView ? "onInView" : "onInitial"}
             className="relative flex h-16 w-44 items-center"
-            transition={{ staggerChildren: 0.25, delay: 1.4, delayChildren: 1.6 }}
+            transition={{ staggerChildren: 0.1, delay: 1.4, delayChildren: 1.6 }}
           >
             {[0.1, 0.3, 0.5, 7].map((n, idx) => (
               <motion.img

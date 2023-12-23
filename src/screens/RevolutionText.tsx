@@ -62,16 +62,29 @@ export const RevolutionTextScreen = () => {
         </div>
         <div className="flex items-center justify-center gap-2">
           <div className="flex gap-4">
-            <div className="flex items-center gap-2">
-              <div className="grid place-items-center rounded-full bg-matte px-4 py-2.5 text-lg font-medium text-ttred">
+            <motion.div
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="flex origin-right items-center gap-2 overflow-hidden"
+            >
+              <motion.div
+                initial={{ maxWidth: 0, opacity: 0 }}
+                whileInView={{ maxWidth: 160, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.75, ease: "easeOut" }}
+                className="grid place-items-center overflow-hidden rounded-full bg-matte/90 px-4 py-2.5 text-lg font-medium text-ttred/90"
+              >
                 ASSISTANCE
-              </div>
+              </motion.div>
               <CircleIcon
                 icon="teeth"
                 iconProps={{ size: 24 }}
+                initial={{ maxWidth: 0, opacity: 0 }}
+                whileInView={{ maxWidth: 160, opacity: 1 }}
+                transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
                 className="bg-ttred text-white"
               />
-            </div>
+            </motion.div>
             <RevealText>Dental</RevealText>
           </div>
           <div className="flex items-center gap-4">

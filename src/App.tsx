@@ -28,7 +28,7 @@ export const App = () => {
   return (
     <ParallaxProvider>
       <AnimatePresence>
-        {showSplash && (
+        {false && (
           <>
             <motion.div
               className="fixed inset-0 z-[9999] grid place-items-center overflow-hidden bg-base"
@@ -40,7 +40,7 @@ export const App = () => {
           </>
         )}
       </AnimatePresence>
-      <IntroScreen />
+      {/* <IntroScreen /> */}
       <RevolutionTextScreen />
       <Screen4 />
     </ParallaxProvider>

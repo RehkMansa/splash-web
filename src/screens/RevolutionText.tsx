@@ -81,8 +81,8 @@ export const RevolutionTextScreen = () => {
           <div className="flex gap-4">
             <motion.div
               initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              whileInView={{ opacity: 1, marginLeft: 50 }}
+              transition={{ duration: 0.6, delay: 0.65, ease: "easeOut" }}
               className="flex origin-right items-center gap-2 overflow-hidden"
             >
               <motion.div

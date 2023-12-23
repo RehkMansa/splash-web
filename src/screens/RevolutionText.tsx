@@ -16,8 +16,6 @@ const RevealText = ({ children, className }: RevealTextProps) => {
   const revealTextRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(revealTextRef, { amount: 0.5 });
 
-  console.log(isInView);
-
   return (
     <div ref={revealTextRef} className="relative overflow-hidden">
       <motion.div
@@ -28,7 +26,7 @@ const RevealText = ({ children, className }: RevealTextProps) => {
           initial: { y: 75, opacity: 0 },
           final: { y: 0, opacity: 1 },
         }}
-        transition={{ duration: 0.5 }}
+        transition={{ duration: 0.5, delay: 0.25 }}
       >
         {children}
       </motion.div>
@@ -49,7 +47,7 @@ const RevealText = ({ children, className }: RevealTextProps) => {
 export const RevolutionTextScreen = () => {
   return (
     <Parallax
-      speed={20}
+      speed={10}
       className="container relative mb-20 flex h-screen flex-col items-center justify-center"
     >
       <div className="relative flex flex-col gap-10 text-center">
@@ -110,18 +108,21 @@ export const RevolutionTextScreen = () => {
         </div>
       </div>
       <FooterCopy>
-        <div
+        <motion.div
           className={cn(
             "relative before:absolute before:inset-0 before:left-1/2 before:top-1/2 before:h-[110%] before:w-[110%] before:-translate-x-1/2 before:-translate-y-1/2 before:rounded-full before:border before:border-ttred before:bg-white",
             "after:absolute after:-top-2 after:left-1/2 after:h-[80%] after:w-[110%] after:-translate-x-1/2 after:rounded-full after:bg-white"
           )}
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           <div className="relative z-[1] grid h-36 w-36 place-items-center rounded-full bg-ttred text-white">
             <span className="text-center text-2xl font-medium uppercase">
               Get Started
             </span>
           </div>
-        </div>
+        </motion.div>
       </FooterCopy>
     </Parallax>
   );

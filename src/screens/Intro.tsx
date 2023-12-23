@@ -47,10 +47,22 @@ export const IntroScreen = () => {
   // use a state to check if its going back or front and animate based on that state
   const handleObjectScroll = (scroll: number) => {
     const tempScroll = Math.floor(scroll * 100);
+    console.log({ tempScroll });
+
+    if (!headerIsInView) return;
 
     if (!flipCardsNode) return;
 
     const [flip1, flip2, flip3] = flipCardsNode;
+
+    if (tempScroll > 0 && tempScroll <= 10) {
+      flipCardsNode.forEach((node) => {
+        console.log("...up cleanup...");
+        if (node.classList.contains(ANIMATE_CLASS)) {
+          node.classList.remove(ANIMATE_CLASS);
+        }
+      });
+    }
 
     if (tempScroll === 30) {
       flip1?.classList?.add(ANIMATE_CLASS);
@@ -64,8 +76,9 @@ export const IntroScreen = () => {
       flip3?.classList?.add(ANIMATE_CLASS);
     }
 
-    if (tempScroll >= 99) {
+    if (tempScroll >= 90) {
       flipCardsNode.forEach((node) => {
+        console.log("...down cleanup...");
         if (node.classList.contains(ANIMATE_CLASS)) {
           node.classList.remove(ANIMATE_CLASS);
         }
@@ -75,7 +88,7 @@ export const IntroScreen = () => {
 
   return (
     <Parallax
-      shouldAlwaysCompleteAnimation
+      // shouldAlwaysCompleteAnimation
       onProgressChange={handleObjectScroll}
       rootMargin={{ top: -100, bottom: 0, left: 0, right: 0 }}
       className="h-[400vh]"

@@ -47,15 +47,22 @@ const RevealText = ({ children, className, animateText }: RevealTextProps) => {
 };
 
 export const RevolutionTextScreen = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const containerIsInView = useInView(containerRef, { amount: 0.5 });
+
   return (
     <Parallax
       speed={10}
       className="container relative mb-20 flex h-screen flex-col items-center justify-center"
     >
-      <div className="relative flex flex-col gap-10 text-center">
-        <div className="flex items-center gap-6">
+      <div ref={containerRef} className="relative flex flex-col gap-10 text-center">
+        <motion.div className="flex items-center gap-6">
           <RevealText>Revolutionizing</RevealText>
-          <div>
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1, marginRight: 200 }}
+            transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+          >
             <MatteIconRow />
             <p className="mt-2 text-left text-sm font-semibold">
               <RevealText
@@ -75,8 +82,8 @@ export const RevolutionTextScreen = () => {
                 Timeless smiles
               </RevealText>
             </p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
         <div className="flex items-center justify-center gap-2">
           <div className="flex gap-4">
             <motion.div
@@ -131,28 +138,53 @@ export const RevolutionTextScreen = () => {
         </div>
         <div className="flex items-center gap-4">
           <RevealText>With technology</RevealText>
-          <div className="relative flex h-16 w-44 items-center">
+          <motion.div
+            variants={{ onInView: { opacity: 1 }, onInitial: { opacity: 0 } }}
+            initial="onInitial"
+            whileInView="onInView"
+            animate={containerIsInView ? "onInView" : "onInitial"}
+            className="relative flex h-16 w-44 items-center"
+            transition={{ staggerChildren: 0.25, delay: 1.4, delayChildren: 1.6 }}
+          >
             {[0.1, 0.3, 0.5, 7].map((n, idx) => (
-              <img
+              <motion.img
                 src={`https://picsum.photos/id/${n * 100}/200/200`}
                 className="absolute h-16 w-16 rounded-full"
-                style={{ translate: `${idx * 20}px 0`, zIndex: 4 - idx }}
+                style={{ zIndex: 4 - idx }}
                 alt=""
                 key={n}
+                variants={{
+                  onInView: { scale: 1, x: idx * 20, opacity: 1 },
+                  onInitial: { scale: 0, opacity: idx === 0 ? 1 : 0 },
+                }}
+                transition={{
+                  ease: "easeOut",
+                  duration: 0.5,
+                }}
               />
             ))}
-            <div className="absolute right-0 rounded-full bg-matte p-2 text-ttred">
+            <motion.div
+              initial={{ scale: 0, opacity: 0 }}
+              whileInView={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.7, ease: "easeOut" }}
+              className="absolute right-0 rounded-full bg-matte p-2 text-ttred"
+            >
               <IconSlot icon="plus" size={18} />
-            </div>
-          </div>
+            </motion.div>
+          </motion.div>
         </div>
 
-        <div className="absolute bottom-0 -translate-x-[30%] translate-y-[80%]">
+        <motion.div
+          initial={{ y: "100%", opacity: 0 }}
+          whileInView={{ y: "80%", opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.4, ease: "easeOut" }}
+          className="absolute bottom-0 -translate-x-[30%] translate-y-[80%]"
+        >
           <img src={Img2} alt="" className="h-32 w-56 rounded-md object-cover" />
           <div className="absolute bottom-0 right-0 grid h-10 w-10 translate-x-4 translate-y-4 place-items-center rounded-full bg-matte text-ttred">
             <IconSlot icon="play" size={18} />
           </div>
-        </div>
+        </motion.div>
       </div>
       <FooterCopy>
         <motion.div

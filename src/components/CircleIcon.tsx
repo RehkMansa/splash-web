@@ -28,9 +28,15 @@ export const MatteIconRow = () => {
   return (
     <div className="flex items-center gap-2">
       {icons.map((icon) => (
-        <div key={icon} className="rounded-full bg-matte stroke-ttred p-2  text-ttred">
+        <motion.div
+          initial={{ opacity: 0, scale: 0, rotate: 90 }}
+          whileInView={{ opacity: 1, rotate: -0, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.65, ease: "easeOut" }}
+          key={icon}
+          className="rounded-full bg-matte stroke-ttred p-2  text-ttred"
+        >
           <IconSlot size={20} key={icon} icon={icon} />
-        </div>
+        </motion.div>
       ))}
     </div>
   );

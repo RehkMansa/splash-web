@@ -11,6 +11,10 @@ const h1Variants = {
   onInView: { maxHeight: 1000, opacity: 1, y: 0 },
 };
 
+
+
+
+
 const imagesToDisplay = [
   [
     { text: "Dental Health Records", src: 99 },
